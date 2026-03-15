@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .page {
+      display: none;
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1.2s ease-in-out;
+      padding: 20px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    button {
+      padding: 14px 35px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      color: rgba(255,255,255,0.6);
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1) rotate(1deg);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.35);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .modal img {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <span class="heart" style="left:10%; animation-delay:0s">❤️</span>
+  <span class="heart" style="left:30%; animation-delay:1s">💖</span>
+  <span class="heart" style="left:50%; animation-delay:2s">💕</span>
+  <span class="heart" style="left:70%; animation-delay:3s">💗</span>
+  <span class="heart" style="left:90%; animation-delay:4s">❤️</span>
+
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    <h1>Happy Birthday 🎂</h1>
+    <p style="font-size:1.3rem;">To my dear little Sherni</p>
+    <p>Someone who makes every ordinary day feel special ✨</p>
+    <button onclick="nextPage()">Open Your Surprise ✨</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <h1>Beautiful Memories that we make!! 📸</h1>
+    <p>Moments that will stay forever in my heart ❤️</p>
+
+    <div class="gallery">
+      <img src="photo1.jpg" onclick="openModal(this.src)" />
+      <img src="photo2.jpg" onclick="openModal(this.src)" />
+      <img src="photo3.jpg" onclick="openModal(this.src)" />
+      <img src="photo4.jpg" onclick="openModal(this.src)" />
+    </div>
+
+    <button onclick="goBack()">⬅ Go Back</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" onclick="closeModal()">
+    <img id="modalImg" />
+  </div>
+
+  <script>
+    function nextPage() {
+      document.getElementById('page1').classList.remove('active');
+      document.getElementById('page2').classList.add('active');
+    }
+
+    function goBack() {
+      document.getElementById('page2').classList.remove('active');
+      document.getElementById('page1').classList.add('active');
+    }
+
+    function openModal(src) {
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modalImg').src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
